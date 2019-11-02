@@ -11,4 +11,4 @@ Make sure you save and require the MySQL and Inquirer npm packages in your homew
 
 
 
-_Made for University of Arizona Coding Bootcamp, Week-12, October 2019
+_Made for University of Arizona Coding Bootcamp, Week-12, October 2019_
