@@ -1,0 +1,22 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "In this activity, you'll be creating an Amazon-like storefront with the MySQL skills you learned this unit. The app will take in orders from customers and deplete stock from the store's inventory. As a bonus task, you can program your app to track product sales across your store's departments and then provide a summary of the highest-grossing departments in the store.",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MalinkaMell/bamazon.git"
+  },
+  "author": "IK",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MalinkaMell/bamazon/issues"
+  },
+  "homepage": "https://github.com/MalinkaMell/bamazon#readme",
+  "dependencies": {
+    "inquirer": "^7.0.0"
+  }
+}
