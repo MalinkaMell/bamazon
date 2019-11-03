@@ -4,6 +4,7 @@
 
 let conn = require("./connection");
 let inquirer = require("inquirer");
+let colors = require("colors");
 
 //connect
 conn.connection.connect(function (error) {
@@ -16,15 +17,11 @@ conn.connection.connect(function (error) {
 //select all products from database
 function selectProducts() {
     //prepare query
-    let sqlQuery = "SELECT * FROM products";
+    let sqlQuery = "SELECT item_id as ID, product_name as Name, department_name as Department, price as Price FROM products";
     //execute query
     conn.connection.query(sqlQuery, function (error, results) {
         if (error) throw error;
-        results.forEach(element => {
-            console.log(` `);
-            console.log(` ${element.item_id}  |   ${element.product_name}  |   ${element.department_name}   |   ${element.price}`);
-            console.log(`_______________________________________________________________________________________________`);
-        });
+        console.table(results, ["ID", "Name", "Department", "Price"]) //Yeah! loving this! >:)
         //invoking function that will ask user what he wants to buy and quantity
         askUser();
     })
@@ -91,12 +88,12 @@ function askUser() {
                 //here checking if user want more than i have
                 if (available === 0) {
 
-                    console.log("\nWe apologise, we don't have any " + results[0].product_name + " at this time!\n");
+                    console.log(`\nWe apologise, we don't have any ${results[0].product_name} at this time!\n`.brightRed);
                     conn.connection.end();
 
                 } else if (available < answers.quantity) {
                     //nicely apologise and ask if he want to buy all i've got
-                    console.log(`\nWe apologise, we don't have ${answers.quantity} ${results[0].product_name} at this time! \nWe only have ${available} ${results[0].product_name} available. Would you like to purchase it all?\n`);
+                    console.log(`\nWe apologise, we don't have ${answers.quantity} ${results[0].product_name} at this time! \nWe only have ${available} ${results[0].product_name} available. Would you like to purchase it all?\n`.brightMagenta);
                     inquirer
                         .prompt([
                             {
@@ -108,17 +105,17 @@ function askUser() {
                         .then(function (answers) {
                             if (answers.select === "Yes") {
                                 buyItAnyway(item_id); //buy out
-                                console.log("\nAll right! Your total for today is: $" + totalAvailable + ".\n"); //displaying total
+                                console.log(`\nAll right! Your total for today is: $${totalAvailable}.\n`.brightYellow); //displaying total
                                 conn.connection.end();
                             }
                             else {
-                                console.log("\nToo bad :(\n");
+                                console.log(`\nToo bad :(\n`.brightYellow);
                                 conn.connection.end();
                             }
                         })
                 } else { //if i have enough
                     buyIt(available, quantity, item_id, price, product_sales); //buy
-                    console.log("\nAll right! Your total for today is: $" + total + "\n");
+                    console.log(`\nAll right! Your total for today is: $${total}\n`.brightYellow);
                     conn.connection.end();
                 }
 

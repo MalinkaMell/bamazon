@@ -1,34 +1,26 @@
-
+let colors = require("colors");
 const inquirer = require("inquirer");
 let conn = require("./connection");
 
 function viewProducts() {
-    let sqlQuery = "SELECT * FROM products";
+    let sqlQuery = "SELECT item_id as ID, product_name as Name, department_name as Department, price as Price, stock_quantity as Quantity FROM products";
     //execute query
     conn.connection.query(sqlQuery, function (error, results) {
         if (error) throw error;
-        results.forEach(element => {
-            console.log(` `);
-            console.log(` ${element.item_id}  |   ${element.product_name}  |   ${element.department_name}   |   ${element.price}   |   ${element.stock_quantity}`);
-            console.log(`_______________________________________________________________________________________________`);
-        });
+        console.table(results, ["ID", "Name", "Department", "Price", "Quantity"]) //Yeah! loving this! >:)
+        conn.connection.end();
     })
     //If a manager selects View Products for Sale, the app should list every available item: the item IDs, names, prices, and quantities.
 }
 
 function viewLowInv() {
-    let sqlQuery = "SELECT * from products WHERE stock_quantity < 50";
+    let sqlQuery = "SELECT  item_id as ID, product_name as Name, department_name as Department, price as Price, stock_quantity as Quantity  from products WHERE stock_quantity < 50";
     //execute query
     conn.connection.query(sqlQuery, function (error, results) {
         if (error) throw error;
-        results.forEach(element => {
-            console.log(` `);
-            console.log(` ${element.item_id}  |   ${element.product_name}  |   ${element.department_name}   |   ${element.price}   |   ${element.stock_quantity}`);
-            console.log(`_______________________________________________________________________________________________`);
-        });
-
+        console.table(results, ["ID", "Name", "Department", "Price", "Quantity"]) //Yeah! loving this! >:)
+        conn.connection.end();
     })
-    conn.connection.end();
     //If a manager selects View Low Inventory, then it should list all items with an inventory count lower than five.
 }
 
@@ -67,16 +59,18 @@ function addToInv() {
                     if (element.product_name === answers.choice) {
                         chosenItem = element;
 
-                        updateQuantity += element.stock_quantity
+                        updateQuantity += element.stock_quantity;
+
+                        console.log(`\nWe have ${updateQuantity} ${element.product_name} in stock now.\n`.brightYellow);
+                        
                     }
                 });
-                console.log(updateQuantity);
 
                 const sqlQuery = "UPDATE products SET ? WHERE ?";
                 const queryParams = [{ stock_quantity: updateQuantity }, { item_id: chosenItem.item_id }];
                 conn.connection.query(sqlQuery, queryParams, function (error, results) {
                     if (error) throw error;
-                    console.log("The quantity has been updated");
+                    console.log("The quantity has been updated\n");
 
                 })
                 conn.connection.end()
@@ -90,6 +84,15 @@ function addToInv() {
 
 
 function addNewProduct() {
+    let depArr = [];
+    conn.connection.query("SELECT * FROM departments", function (error, results) {
+        if (error) throw error;
+        results.forEach(element => {
+            depArr.push(element.department_name);
+        })
+    });
+
+
     inquirer
         .prompt([
             {
@@ -99,8 +102,9 @@ function addNewProduct() {
             },
             {
                 name: "department_name",
-                message: "Please insert department name",
-                type: "input"
+                message: "Please select department",
+                type: "list",
+                choices: depArr
             },
             {
                 name: "price",
@@ -123,7 +127,9 @@ function addNewProduct() {
             }
             conn.connection.query(sqlQuery, productObj, function (error, results) {
                 if (error) throw error;
-                console.log(results)
+                console.log(`\nThe product has been successfuly added\n`.brightYellow);
+                conn.connection.end();
+
             })
         })
     //If a manager selects Add New Product, it should allow the manager to add a completely new product to the store. 

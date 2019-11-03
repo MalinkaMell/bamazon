@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/MalinkaMell/bamazon#readme",
   "dependencies": {
+    "colors": "^1.4.0",
     "inquirer": "^7.0.0"
   }
 }
