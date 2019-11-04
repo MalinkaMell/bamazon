@@ -2,14 +2,13 @@ const inquirer = require("inquirer");
 let conn = require("./connection");
 let colors = require("colors");
 
-let sqlQuery = "SELECT * FROM departments";
-conn.connection.query(sqlQuery, function (error, results) {
-    if (error) throw error;
-    //console.table(results);
-
-})
-
 function viewByDep() {
+    /*selecting:
+    department_id, department_name, over_head_costs from departments table
+    product_sales, department_name from products table
+    summing the values of each element in product_sales column (products table) and subtracting over_head_costs (department table) 
+    and showing the results in virtual "total_profit" column
+    */
     let sqlQuery =
         `SELECT d.department_id, 
                 d.department_name, 
@@ -21,7 +20,6 @@ function viewByDep() {
         FROM departments AS d 
         INNER JOIN products AS p 
         ON d.department_name = p.department_name
-        
         GROUP BY d.department_id`
     conn.connection.query(sqlQuery, function (error, results) {
         if (error) throw error;

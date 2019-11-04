@@ -14,11 +14,18 @@ function viewProducts() {
 }
 
 function viewLowInv() {
-    let sqlQuery = "SELECT  item_id as ID, product_name as Name, department_name as Department, price as Price, stock_quantity as Quantity  from products WHERE stock_quantity < 50";
+    let sqlQuery = `
+        SELECT  item_id as ID, 
+        product_name as Name, 
+        department_name as Department, 
+        price as Price, 
+        stock_quantity as Quantity 
+        FROM products 
+        WHERE stock_quantity < 5`;
     //execute query
     conn.connection.query(sqlQuery, function (error, results) {
         if (error) throw error;
-        console.table(results, ["ID", "Name", "Department", "Price", "Quantity"]) //Yeah! loving this! >:)
+        console.table(results, ["ID", "Name", "Department", "Price", "Quantity"]) 
         conn.connection.end();
     })
     //If a manager selects View Low Inventory, then it should list all items with an inventory count lower than five.
