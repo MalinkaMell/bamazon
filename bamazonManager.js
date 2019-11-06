@@ -2,6 +2,7 @@ let colors = require("colors");
 const inquirer = require("inquirer");
 let conn = require("./connection");
 
+//Running this application will first display all of the items available for sale. Include the ids, names, and prices of products for sale.
 function viewProducts() {
     let sqlQuery = "SELECT item_id as ID, product_name as Name, department_name as Department, price as Price, stock_quantity as Quantity FROM products";
     //execute query
@@ -142,7 +143,9 @@ function addNewProduct() {
     //If a manager selects Add New Product, it should allow the manager to add a completely new product to the store. 
 }
 
-inquirer
+
+function start() {
+    inquirer
     .prompt([
         {
             message: "Menu options",
@@ -167,3 +170,6 @@ inquirer
         }
 
     })
+}
+
+start();

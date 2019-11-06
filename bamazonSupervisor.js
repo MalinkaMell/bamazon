@@ -2,6 +2,7 @@ const inquirer = require("inquirer");
 let conn = require("./connection");
 let colors = require("colors");
 
+//view by department function
 function viewByDep() {
     /*selecting:
     department_id, department_name, over_head_costs from departments table
@@ -28,6 +29,7 @@ function viewByDep() {
     })
 };
 
+//create new department function
 function createNewDep() {
     inquirer
         .prompt([{
@@ -51,6 +53,7 @@ function createNewDep() {
         })
 };
 
+//inquirer as we starting the application
 function start() {
     inquirer
         .prompt([
@@ -79,5 +82,6 @@ function start() {
         })
 
 }
-start()
-//console.table(results, ["item_id", "product_name", "department_name", "price"]) //Yeah! loving this! >:)
+
+//run application
+start();

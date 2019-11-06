@@ -17,7 +17,12 @@ conn.connection.connect(function (error) {
 //select all products from database
 function selectProducts() {
     //prepare query
-    let sqlQuery = "SELECT item_id as ID, product_name as Name, department_name as Department, price as Price FROM products";
+    let sqlQuery = `
+        SELECT item_id as ID, 
+        product_name as Name, 
+        department_name as Department, 
+        price as Price 
+        FROM products`;
     //execute query
     conn.connection.query(sqlQuery, function (error, results) {
         if (error) throw error;

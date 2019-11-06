@@ -1,5 +1,7 @@
 # Bamazon
 
+![Bamazon](assets/images/logo.jpg)
+
 ### Overview
 
 In this activity, you'll be creating an Amazon-like storefront with the MySQL skills you learned this unit. The app will take in orders from customers and deplete stock from the store's inventory. As a bonus task, you can program your app to track product sales across your store's departments and then provide a summary of the highest-grossing departments in the store.
@@ -25,8 +27,8 @@ In this activity, you'll be creating an Amazon-like storefront with the MySQL sk
 
  ![Manager screen](assets/images/manager-1.jpg)
 
-* Add to Inventory: your app should display a prompt that will let the manager "add more" of any item currently in the store.
-* Add New Product: it should allow the manager to add a completely new product to the store.
+*   Add to Inventory: your app should display a prompt that will let the manager "add more" of any item currently in the store.
+*   Add New Product: it should allow the manager to add a completely new product to the store.
 
 ![Manager screen](assets/images/manager-2.jpg)
 
