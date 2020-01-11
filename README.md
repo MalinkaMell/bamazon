@@ -1,11 +1,12 @@
 # Bamazon
 
-![Bamazon](assets/images/logo.jpg)
+![Bamazon](assets/images/githubtpl.png)
 
 ### Overview
 
 In this activity, you'll be creating an Amazon-like storefront with the MySQL skills you learned this unit. The app will take in orders from customers and deplete stock from the store's inventory. As a bonus task, you can program your app to track product sales across your store's departments and then provide a summary of the highest-grossing departments in the store.
 
+---
 
 #### Challenge #1: Customer View (Minimum Requirement)
 
@@ -18,6 +19,7 @@ In this activity, you'll be creating an Amazon-like storefront with the MySQL sk
 
 [Clik here for video demo of Challenge #1](https://youtu.be/nQjlNch1xJA)
     
+---
 
 #### Challenge #2: Manager View (Next Level)
 
@@ -34,7 +36,7 @@ In this activity, you'll be creating an Amazon-like storefront with the MySQL sk
 
 [Clik here for video demo of Challenge #2](https://youtu.be/T8XRODW4PAE)
 
-
+---
 
 #### Challenge #3: Supervisor View (Final Level)
 
@@ -53,5 +55,6 @@ In this activity, you'll be creating an Amazon-like storefront with the MySQL sk
 
 [Clik here for video demo of Challenge #3](https://youtu.be/D9opF_r7e98)
 
+---
 
 _Made for University of Arizona Coding Bootcamp, Week-12, October 2019_
